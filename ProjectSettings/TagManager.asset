@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -11,7 +12,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 
@@ -38,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: CollisionGround
+    uniqueID: 3203960113
+    locked: 0
+  - name: Background
+    uniqueID: 1477682901
+    locked: 0
+  - name: Foreground
+    uniqueID: 2616906977
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
