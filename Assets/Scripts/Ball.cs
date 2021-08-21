@@ -11,12 +11,8 @@ public class Ball : MonoBehaviour
     public float angleFactor = 0.2f;
     public int damage = 1;
 
-    // public Vector2 initialPosition;
-
     void Start()
     {
-        // initialPosition = transform.localPosition;
-        // timeCounter = initi
     }
 
     void Update()
@@ -26,7 +22,6 @@ public class Ball : MonoBehaviour
 
     private void Rotate()
     {
-        // timeCounter += Time.deltaTime * speed;
         timeCounter += Time.deltaTime * speed;
         float x = Mathf.Cos(timeCounter + angleFactor) * radius;
         float y = Mathf.Sin(timeCounter + angleFactor) * radius;
