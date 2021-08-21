@@ -25,12 +25,17 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
-        BeingHitFeedback();
         if (health <= 0)
         {
+
             DieMotion();
             Instantiate(effect, transform.position, Quaternion.identity);
             player.needToZoom = true;
+            player.playerCamera.transform.position = transform.position + new Vector3(0, 0, -10);
+        }
+        else
+        {
+            BeingHitFeedback();
         }
     }
 
@@ -44,15 +49,21 @@ public class Enemy : MonoBehaviour
         if (player == null) player = GameObject.FindObjectOfType<Player>();
         Vector2 direction = -(player.transform.position - transform.position).normalized;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
 
+        Animator animator = GetComponent<Animator>();
+        animator.enabled = false;
+
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = deadSprite;
+
+
         isDead = true;
 
         rb.bodyType = RigidbodyType2D.Dynamic;
-        rb.velocity = new Vector3(direction.x * 3f, 6f, 0);
+        // rb.velocity = new Vector3(direction.x * 3f, 6f, 0);
+        rb.velocity = new Vector3(direction.x * 7f, 12f, 0);
         rb.constraints = RigidbodyConstraints2D.None;
-        rb.angularVelocity = direction.x * -40f;
+        rb.angularVelocity = direction.x * -60f;
         rb.gravityScale = 2f;
 
         GetComponent<Collider2D>().enabled = false;

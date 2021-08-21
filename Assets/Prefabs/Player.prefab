@@ -226,7 +226,7 @@ MonoBehaviour:
   lowJumpMultiplier: 15
   playerCamera: {fileID: 0}
   zoomInSpeed: 0.5
-  zoomOutSpeed: 0.4
+  zoomOutSpeed: 0.5
   needToZoom: 0
   zoomInSize: 2
   normalZoomSize: 5

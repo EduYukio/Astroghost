@@ -34,29 +34,37 @@ public class Player : MonoBehaviour
     {
         if (needToZoom)
         {
-            Time.timeScale = 0f;
-            playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, zoomInSize, zoomInSpeed);
-            if (Mathf.Approximately(playerCamera.orthographicSize, zoomInSize))
-            {
-                if (!alreadyInCoroutine)
-                {
-                    StartCoroutine(nameof(TimePauseCoroutine));
-                }
-            }
+            ZoomIn();
         }
         else
         {
-            bool notNormalSizeYet = !Mathf.Approximately(playerCamera.orthographicSize, normalZoomSize);
-            if (notNormalSizeYet)
+            ZoomOut();
+            ProcessWalkRequest();
+            ProcessJumpRequest();
+        }
+    }
+
+    private void ZoomIn()
+    {
+        Time.timeScale = 0.025f;
+        playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, zoomInSize, zoomInSpeed);
+        if (Mathf.Approximately(playerCamera.orthographicSize, zoomInSize))
+        {
+            if (!alreadyInCoroutine)
             {
-                playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, 5, zoomOutSpeed);
+                StartCoroutine(nameof(TimePauseCoroutine));
             }
-            else
-            {
-                Time.timeScale = 1f;
-                ProcessWalkRequest();
-                ProcessJumpRequest();
-            }
+        }
+    }
+
+    private void ZoomOut()
+    {
+        playerCamera.transform.position = transform.position + new Vector3(0, 0, -10);
+        bool notNormalSizeYet = !Mathf.Approximately(playerCamera.orthographicSize, normalZoomSize);
+        if (notNormalSizeYet)
+        {
+            playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, 5, zoomOutSpeed);
+            Time.timeScale = 1f;
         }
     }
 
