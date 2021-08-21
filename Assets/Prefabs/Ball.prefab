@@ -140,6 +140,9 @@ MonoBehaviour:
   radius: 1.75
   angleFactor: 2
   damage: 1
+  effect: {fileID: 6474011418434676698, guid: 6fe6386f886468f4c8b94439315d3571, type: 3}
+  startParticleCooldown: 0.095
+  particleTimer: 0
 --- !u!96 &4560199348274138350
 TrailRenderer:
   serializedVersion: 2
