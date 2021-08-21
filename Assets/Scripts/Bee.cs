@@ -10,6 +10,10 @@ public class Bee : Enemy
 
     public float speed = 2f;
 
+    bool isBeingHit = false;
+    public float knockbackSpeed = 3f;
+    public float beingHitTimer = 0.5f;
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -20,10 +24,13 @@ public class Bee : Enemy
 
     void Update()
     {
-        SetSpeed();
+        if (!isBeingHit)
+        {
+            MoveTowardsPlayer();
+        }
     }
 
-    private void SetSpeed()
+    private void MoveTowardsPlayer()
     {
         Vector2 distance = player.transform.position - transform.position;
         Vector2 direction = distance.normalized;
@@ -42,5 +49,20 @@ public class Bee : Enemy
         {
             spriteRenderer.flipX = false;
         }
+    }
+
+    public override void BeingHitFeedback()
+    {
+        Vector2 distance = player.transform.position - transform.position;
+        Vector2 direction = -1 * distance.normalized;
+
+        isBeingHit = true;
+        rb.velocity = direction * knockbackSpeed;
+        Invoke(nameof(StopBeingHit), beingHitTimer);
+    }
+
+    private void StopBeingHit()
+    {
+        isBeingHit = false;
     }
 }

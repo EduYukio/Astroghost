@@ -19,9 +19,15 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        BeingHitFeedback();
         if (health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    public virtual void BeingHitFeedback()
+    {
+
     }
 }
