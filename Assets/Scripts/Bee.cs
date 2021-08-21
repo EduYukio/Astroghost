@@ -13,17 +13,20 @@ public class Bee : Enemy
     bool isBeingHit = false;
     public float knockbackSpeed = 3f;
     public float beingHitTimer = 0.5f;
+    public Animator animator;
 
     void Start()
     {
         player = FindObjectOfType<Player>();
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         health = maxHealth;
     }
 
     void Update()
     {
+        if (isDead) return;
         if (!isBeingHit)
         {
             MoveTowardsPlayer();
@@ -57,6 +60,8 @@ public class Bee : Enemy
         Vector2 direction = -1 * distance.normalized;
 
         isBeingHit = true;
+        animator.SetBool("isBeingHit", true);
+
         rb.velocity = direction * knockbackSpeed;
         Invoke(nameof(StopBeingHit), beingHitTimer);
     }
@@ -64,5 +69,6 @@ public class Bee : Enemy
     private void StopBeingHit()
     {
         isBeingHit = false;
+        animator.SetBool("isBeingHit", false);
     }
 }

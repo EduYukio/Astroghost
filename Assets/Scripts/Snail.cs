@@ -7,14 +7,17 @@ public class Snail : Enemy
     public Transform frontTransform;
     private float distanceToCheckGround = 0.2f;
     public float moveSpeed = 1f;
+    private Animator animator;
 
     void Start()
     {
-
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (isDead) return;
+
         if (!ThereIsGroundToWalk())
         {
             InvertDirection();
@@ -29,6 +32,7 @@ public class Snail : Enemy
     {
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
     }
+
     private bool ThereIsGroundToWalk()
     {
         int layersToCollide = LayerMask.GetMask("Ground");
@@ -52,5 +56,16 @@ public class Snail : Enemy
         {
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
+    }
+
+    public override void BeingHitFeedback()
+    {
+        animator.SetBool("isBeingHit", true);
+        Invoke(nameof(StopBeingHit), 0.15f);
+    }
+
+    private void StopBeingHit()
+    {
+        animator.SetBool("isBeingHit", false);
     }
 }
