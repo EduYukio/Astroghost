@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     Player player;
     public Sprite deadSprite;
     public bool isDead = false;
+    public GameObject effect;
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             DieMotion();
+            Instantiate(effect, transform.position, Quaternion.identity);
             player.needToZoom = true;
         }
     }
