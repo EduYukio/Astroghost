@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public float pauseTime = 0.1f;
     private bool alreadyInCoroutine = false;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +43,8 @@ public class Player : MonoBehaviour
             ProcessWalkRequest();
             ProcessJumpRequest();
         }
+
+
     }
 
     private void ZoomIn()
