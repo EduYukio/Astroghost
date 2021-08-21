@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             DieMotion();
+            player.needToZoom = true;
         }
     }
 

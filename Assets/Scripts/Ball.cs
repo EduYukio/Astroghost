@@ -10,9 +10,11 @@ public class Ball : MonoBehaviour
     private float timeCounter = 0f;
     public float angleFactor = 0.2f;
     public int damage = 1;
+    Player player;
 
     void Start()
     {
+        player = FindObjectOfType<Player>();
     }
 
     void Update()

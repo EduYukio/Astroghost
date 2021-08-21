@@ -224,6 +224,13 @@ MonoBehaviour:
   jumpForce: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 15
+  playerCamera: {fileID: 0}
+  zoomInSpeed: 0.5
+  zoomOutSpeed: 0.4
+  needToZoom: 0
+  zoomInSize: 2
+  normalZoomSize: 5
+  pauseTime: 0.2
 --- !u!1001 &3926158375631619751
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,16 +13,51 @@ public class Player : MonoBehaviour
     public float fallMultiplier = 3.5f;
     public float lowJumpMultiplier = 15f;
 
+    public Camera playerCamera;
+    public float zoomInSpeed = 0.2f;
+    public float zoomOutSpeed = 0.2f;
+    public bool needToZoom = false;
+
+    public float zoomInSize = 3.75f;
+    public float normalZoomSize = 5f;
+    public float pauseTime = 0.1f;
+    private bool alreadyInCoroutine = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        playerCamera = Camera.main;
     }
 
     void Update()
     {
-        ProcessWalkRequest();
-        ProcessJumpRequest();
+        if (needToZoom)
+        {
+            Time.timeScale = 0f;
+            playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, zoomInSize, zoomInSpeed);
+            if (Mathf.Approximately(playerCamera.orthographicSize, zoomInSize))
+            {
+                if (!alreadyInCoroutine)
+                {
+                    StartCoroutine(nameof(TimePauseCoroutine));
+                }
+            }
+        }
+        else
+        {
+            bool notNormalSizeYet = !Mathf.Approximately(playerCamera.orthographicSize, normalZoomSize);
+            if (notNormalSizeYet)
+            {
+                playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, 5, zoomOutSpeed);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                ProcessWalkRequest();
+                ProcessJumpRequest();
+            }
+        }
     }
 
     private void ProcessWalkRequest()
@@ -65,5 +101,13 @@ public class Player : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+    }
+
+    IEnumerator TimePauseCoroutine()
+    {
+        alreadyInCoroutine = true;
+        yield return new WaitForSecondsRealtime(pauseTime);
+        needToZoom = false;
+        alreadyInCoroutine = false;
     }
 }
