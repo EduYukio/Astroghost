@@ -15,6 +15,8 @@ public class Bee : Enemy
     public float beingHitTimer = 0.5f;
     public Animator animator;
 
+    // public float distanceToPursuePlayer = 2f;
+
     void Start()
     {
         player = FindObjectOfType<Player>();
@@ -38,6 +40,8 @@ public class Bee : Enemy
         Vector2 distance = player.transform.position - transform.position;
         Vector2 direction = distance.normalized;
 
+        // if (Mathf.Abs(distance.magnitude) > distanceToPursuePlayer) return;
+        if (!spriteRenderer.isVisible) return;
         rb.velocity = direction * speed;
         UpdateLookingPosition(direction);
     }
@@ -70,5 +74,6 @@ public class Bee : Enemy
     {
         isBeingHit = false;
         animator.SetBool("isBeingHit", false);
+        canBeHit = true;
     }
 }

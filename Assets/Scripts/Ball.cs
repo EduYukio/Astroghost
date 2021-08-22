@@ -46,7 +46,10 @@ public class Ball : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<Enemy>()?.TakeDamage(damage);
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (!enemy.canBeHit) return;
+            enemy.TakeDamage(damage);
+            enemy.canBeHit = false;
         }
     }
 }

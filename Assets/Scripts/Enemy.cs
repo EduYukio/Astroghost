@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Sprite deadSprite;
     public bool isDead = false;
     public GameObject effect;
+    public bool canBeHit = true;
 
     void Start()
     {
