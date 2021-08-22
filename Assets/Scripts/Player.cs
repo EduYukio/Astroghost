@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,16 +24,28 @@ public class Player : MonoBehaviour
     public float pauseTime = 0.1f;
     private bool alreadyInCoroutine = false;
 
+    public float maxHealth = 3f;
+    public float health;
+    public bool isInvulnerable = false;
+    public float invulnerabilityTime = 2f;
+
+    public float newAlpha = 1f;
+
+    public bool isDead = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerCamera = Camera.main;
+        health = maxHealth;
     }
 
     void Update()
     {
+        if (isDead) return;
+
+
         if (needToZoom)
         {
             ZoomIn();
@@ -44,7 +57,19 @@ public class Player : MonoBehaviour
             ProcessJumpRequest();
         }
 
-
+        if (isInvulnerable)
+        {
+            // float factor = 0.001f;
+            // newAlpha -= Time.deltaTime * factor;
+            newAlpha -= newAlpha * 0.025f;
+            if (newAlpha <= 0.4f) newAlpha = 1;
+            spriteRenderer.color = new Color(126f / 255, 1f, 247f / 255, newAlpha);
+        }
+        else
+        {
+            newAlpha = 1;
+            spriteRenderer.color = new Color(126f / 255, 1f, 247f / 255, 1f);
+        }
     }
 
     private void ZoomIn()
@@ -120,5 +145,51 @@ public class Player : MonoBehaviour
         yield return new WaitForSecondsRealtime(pauseTime);
         needToZoom = false;
         alreadyInCoroutine = false;
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            if (isInvulnerable) return;
+            health -= 1;
+            if (health <= 0)
+            {
+                Die();
+                return;
+            }
+            isInvulnerable = true;
+            //talvez animação de tomar hit
+            Invoke(nameof(TurnOffInvulnerability), invulnerabilityTime);
+
+        }
+    }
+
+    private void TurnOffInvulnerability()
+    {
+        isInvulnerable = false;
+    }
+
+    private void Die()
+    {
+        // Animator animator = GetComponent<Animator>();
+        // animator.enabled = false;
+        isDead = true;
+
+        // spriteRenderer.sprite = deadSprite;
+        rb.velocity = new Vector3(Vector2.left.x * 7f, 12f, 0);
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.angularVelocity = Vector2.left.x * -60f;
+        rb.gravityScale = 2f;
+        GetComponent<Collider2D>().enabled = false;
+        playerCamera.transform.parent = null;
+        // Destroy(gameObject, 0.75f);
+        // Manager.audio.PlayDelayed("EnemyDying", 0.75f);
+        Invoke(nameof(ReloadScene), 0.75f);
+    }
+
+    private void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
