@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-
+            Manager.audio.Play("Hit3");
             DieMotion();
             Instantiate(effect, transform.position, Quaternion.identity);
             player.needToZoom = true;
@@ -37,6 +37,7 @@ public class Enemy : MonoBehaviour
         else
         {
             BeingHitFeedback();
+            Manager.audio.Play("HitSimple1");
         }
     }
 

@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         playerCamera = Camera.main;
         health = maxHealth;
+        Manager.PlayBGMIfNotStartedYet();
     }
 
     void Update()
