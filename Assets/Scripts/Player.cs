@@ -59,8 +59,6 @@ public class Player : MonoBehaviour
 
         if (isInvulnerable)
         {
-            // float factor = 0.001f;
-            // newAlpha -= Time.deltaTime * factor;
             newAlpha -= newAlpha * 0.025f;
             if (newAlpha <= 0.4f) newAlpha = 1;
             spriteRenderer.color = new Color(126f / 255, 1f, 247f / 255, newAlpha);
