@@ -6,8 +6,8 @@ public class Snail : Enemy
 {
     public Transform frontTransform;
     public Transform wallTransform;
-    private float distanceToCheckGround = 0.2f;
-    private float distanceToCheckWall = 0.2f;
+    public float distanceToCheckGround = 0.2f;
+    public float distanceToCheckWall = 0.2f;
     public float moveSpeed = 1f;
     private Animator animator;
 

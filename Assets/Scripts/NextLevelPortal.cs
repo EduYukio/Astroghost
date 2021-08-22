@@ -5,16 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class NextLevelPortal : MonoBehaviour
 {
-    public void GoToNextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             GoToNextLevel();
         }
+    }
+
+    public void GoToNextLevel()
+    {
+        Manager.audio.Play("NextLevel");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

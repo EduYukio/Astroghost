@@ -206,6 +206,8 @@ MonoBehaviour:
   canBeHit: 1
   frontTransform: {fileID: 609535290696288726}
   wallTransform: {fileID: 5625120554418288746}
+  distanceToCheckGround: 0.05
+  distanceToCheckWall: 0.05
   moveSpeed: 1
 --- !u!95 &58655571159220985
 Animator:
