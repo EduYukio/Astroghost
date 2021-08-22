@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public bool isGrounded = false;
     public Rigidbody2D rb;
     public float moveSpeed = 5f;
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public float jumpForce = 5f;
     public float fallMultiplier = 3.5f;
     public float lowJumpMultiplier = 15f;
@@ -32,6 +32,10 @@ public class Player : MonoBehaviour
     public float newAlpha = 1f;
 
     public bool isDead = false;
+
+    public Sprite normalSprite;
+    public Sprite beingHitSprite;
+    public Sprite wowSprite;
 
     void Start()
     {
@@ -151,6 +155,8 @@ public class Player : MonoBehaviour
         {
             if (isInvulnerable) return;
             health -= 1;
+            spriteRenderer.sprite = beingHitSprite;
+            Invoke(nameof(ChangeToNormalSprite), 1f);
             if (health <= 0)
             {
                 Die();
@@ -189,5 +195,10 @@ public class Player : MonoBehaviour
     private void ReloadScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void ChangeToNormalSprite()
+    {
+        spriteRenderer.sprite = normalSprite;
     }
 }

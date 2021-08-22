@@ -55,7 +55,7 @@ public class Ball : MonoBehaviour
             enemy.TakeDamage(damage);
             enemy.canBeHit = false;
             spriteRenderer.sprite = attackingSprite;
-            Invoke(nameof(TurnBackToNormalSprite), 0.2f);
+            Invoke(nameof(TurnBackToNormalSprite), 0.1f);
         }
     }
 

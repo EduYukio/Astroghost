@@ -222,6 +222,7 @@ MonoBehaviour:
   isGrounded: 1
   rb: {fileID: 3926158376958201561}
   moveSpeed: 5
+  spriteRenderer: {fileID: 0}
   jumpForce: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 15
@@ -232,6 +233,15 @@ MonoBehaviour:
   zoomInSize: 2
   normalZoomSize: 5
   pauseTime: 0.2
+  maxHealth: 3
+  health: 0
+  isInvulnerable: 0
+  invulnerabilityTime: 2
+  newAlpha: 1
+  isDead: 0
+  normalSprite: {fileID: 21300000, guid: 14761347c7f3a1645bcf673d9b7e9662, type: 3}
+  beingHitSprite: {fileID: 21300000, guid: 22e62fb941a635d4ab02a164e566885b, type: 3}
+  wowSprite: {fileID: 21300000, guid: 735a3aded92fb6141a17fc0d39d1ab31, type: 3}
 --- !u!114 &7839160136901535481
 MonoBehaviour:
   m_ObjectHideFlags: 0
