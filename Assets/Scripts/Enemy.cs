@@ -71,7 +71,6 @@ public class Enemy : MonoBehaviour
 
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 0.75f);
-        // Manager.audio.PlayDelayed("EnemyDying", 0.75f);
     }
 
     public void TurnBackToNormalSprite()

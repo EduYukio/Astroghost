@@ -183,11 +183,12 @@ MonoBehaviour:
   m_text: 'You finished the game! You are awesome!!
 
 
-    Astroghost was made for
-    the KenneyJam2021 by Eduardo Yukio and Ana Paula Mayumi.
+    Astroghost was made in
+    48h for the KenneyJam2021 by Eduardo Yukio and Ana Paula Mayumi.
 
 
-    Thanks for playing!'
+    Thanks
+    for playing!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
@@ -360,6 +361,7 @@ GameObject:
   - component: {fileID: 551611017}
   - component: {fileID: 551611016}
   - component: {fileID: 551611020}
+  - component: {fileID: 551611021}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -452,6 +454,18 @@ RectTransform:
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &551611020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551611015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b05ee423f0dd0044da8647996478f86b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &551611021
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -885,7 +899,7 @@ GameObject:
   - component: {fileID: 2105236317}
   - component: {fileID: 2105236316}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: MenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,9 +947,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_HighlightedColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -957,7 +971,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551611020}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: BackToMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
