@@ -5,7 +5,9 @@ using UnityEngine;
 public class Snail : Enemy
 {
     public Transform frontTransform;
+    public Transform wallTransform;
     private float distanceToCheckGround = 0.2f;
+    private float distanceToCheckWall = 0.2f;
     public float moveSpeed = 1f;
     private Animator animator;
 
@@ -18,7 +20,7 @@ public class Snail : Enemy
     {
         if (isDead) return;
 
-        if (!ThereIsGroundToWalk())
+        if (!ThereIsGroundToWalk() || ThereIsWallAhead())
         {
             InvertDirection();
         }
@@ -37,6 +39,19 @@ public class Snail : Enemy
     {
         int layersToCollide = LayerMask.GetMask("Ground");
         RaycastHit2D ray = Physics2D.Raycast(frontTransform.position, Vector2.down, distanceToCheckGround, layersToCollide);
+
+        if (ray.collider != null && ray.collider.CompareTag("Ground"))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool ThereIsWallAhead()
+    {
+        int layersToCollide = LayerMask.GetMask("Ground");
+        RaycastHit2D ray = Physics2D.Raycast(wallTransform.position, Vector2.left, distanceToCheckWall, layersToCollide);
 
         if (ray.collider != null && ray.collider.CompareTag("Ground"))
         {
