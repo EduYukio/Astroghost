@@ -14,10 +14,14 @@ public class Ball : MonoBehaviour
     public GameObject effect;
     public float startParticleCooldown = 0.2f;
     public float particleTimer = 0f;
+    public Sprite normalSprite;
+    public Sprite attackingSprite;
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
         player = FindObjectOfType<Player>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -50,6 +54,13 @@ public class Ball : MonoBehaviour
             if (!enemy.canBeHit) return;
             enemy.TakeDamage(damage);
             enemy.canBeHit = false;
+            spriteRenderer.sprite = attackingSprite;
+            Invoke(nameof(TurnBackToNormalSprite), 0.1f);
         }
+    }
+
+    public void TurnBackToNormalSprite()
+    {
+        spriteRenderer.sprite = normalSprite;
     }
 }

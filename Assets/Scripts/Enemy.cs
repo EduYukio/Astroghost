@@ -56,7 +56,8 @@ public class Enemy : MonoBehaviour
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = deadSprite;
-
+        player.spriteRenderer.sprite = player.wowSprite;
+        Invoke(nameof(TurnBackToNormalSprite), 0.15f);
 
         isDead = true;
 
@@ -70,5 +71,10 @@ public class Enemy : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         Destroy(gameObject, 0.75f);
         // Manager.audio.PlayDelayed("EnemyDying", 0.75f);
+    }
+
+    public void TurnBackToNormalSprite()
+    {
+        player.spriteRenderer.sprite = player.normalSprite;
     }
 }
