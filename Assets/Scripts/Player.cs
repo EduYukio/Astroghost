@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         bool notNormalSizeYet = !Mathf.Approximately(playerCamera.orthographicSize, normalZoomSize);
         if (notNormalSizeYet)
         {
-            playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, 5, zoomOutSpeed);
+            playerCamera.orthographicSize = Mathf.Lerp(playerCamera.orthographicSize, normalZoomSize, zoomOutSpeed);
             Time.timeScale = 1f;
         }
     }
