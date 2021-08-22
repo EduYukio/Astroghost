@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245bde79ace18cf43ad51e478cec9c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 4
   health: 0
   deadSprite: {fileID: 21300000, guid: 0e26a1a97ab1d7b4f8bc7d14b0c7e5c9, type: 3}
   isDead: 0

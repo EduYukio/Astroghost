@@ -137,7 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2.5
-  radius: 1.75
+  radius: 1.825
   angleFactor: 2
   damage: 1
   effect: {fileID: 6474011418434676698, guid: 6fe6386f886468f4c8b94439315d3571, type: 3}
