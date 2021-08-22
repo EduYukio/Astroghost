@@ -15,6 +15,11 @@ public class DeathArea : MonoBehaviour
             player.health -= 1;
             // Destroy(player.PlayerUI.playerLivesImages[(int)player.health]);
             (player.PlayerUI.playerLivesImages[(int)player.health]).enabled = false;
+            if (player.health <= 0)
+            {
+                player.Die();
+                return;
+            }
             player.spriteRenderer.sprite = player.beingHitSprite;
             Manager.audio.Play("PlayerTakeHit");
             Invoke(nameof(TeleportPlayer), 0.5f);
