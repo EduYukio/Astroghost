@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public Vector3 originalPosition;
     public static Vector3 respawnPosition = Vector3.zero;
 
+    public UI PlayerUI;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
         {
             respawnPosition = originalPosition;
         }
+        PlayerUI = FindObjectOfType<UI>();
     }
 
     void Update()
@@ -60,6 +63,8 @@ public class Player : MonoBehaviour
         if (isDead) return;
 
 
+        ProcessWalkRequest();
+        ProcessJumpRequest();
         if (needToZoom)
         {
             ZoomIn();
@@ -67,8 +72,8 @@ public class Player : MonoBehaviour
         else
         {
             ZoomOut();
-            ProcessWalkRequest();
-            ProcessJumpRequest();
+            // ProcessWalkRequest();
+            // ProcessJumpRequest();
         }
 
         if (isInvulnerable)
@@ -171,6 +176,10 @@ public class Player : MonoBehaviour
         {
             if (isInvulnerable) return;
             health -= 1;
+            // PlayerUI.RemoveFarthestHeart();
+
+            // Destroy(PlayerUI.playerLivesImages[(int)health]);
+            (PlayerUI.playerLivesImages[(int)health]).enabled = false;
             spriteRenderer.sprite = beingHitSprite;
             Manager.audio.Play("PlayerTakeHit");
             Invoke(nameof(ChangeToNormalSprite), 1f);
@@ -182,7 +191,6 @@ public class Player : MonoBehaviour
             isInvulnerable = true;
             //talvez animação de tomar hit
             Invoke(nameof(TurnOffInvulnerability), invulnerabilityTime);
-
         }
     }
 
