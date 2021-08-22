@@ -139,7 +139,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: ce8cd7f504e0c96439e5749fc04ebc0c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.759434, b: 0.78728336, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 245bde79ace18cf43ad51e478cec9c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 2
   health: 0
   deadSprite: {fileID: 21300000, guid: 0e26a1a97ab1d7b4f8bc7d14b0c7e5c9, type: 3}
   isDead: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   canBeHit: 1
   frontTransform: {fileID: 609535290696288726}
   wallTransform: {fileID: 5625120554418288746}
-  moveSpeed: 0.75
+  moveSpeed: 1
 --- !u!95 &58655571159220985
 Animator:
   serializedVersion: 3

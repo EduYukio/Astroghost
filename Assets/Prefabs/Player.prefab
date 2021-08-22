@@ -227,11 +227,17 @@ MonoBehaviour:
   lowJumpMultiplier: 15
   playerCamera: {fileID: 0}
   zoomInSpeed: 0.5
-  zoomOutSpeed: 0.5
+  zoomOutSpeed: 0.05
   needToZoom: 0
   zoomInSize: 2
   normalZoomSize: 5
-  pauseTime: 0.2
+  pauseTime: 0.3
+  maxHealth: 3
+  health: 0
+  isInvulnerable: 0
+  invulnerabilityTime: 2
+  newAlpha: 1
+  isDead: 0
 --- !u!114 &7839160136901535481
 MonoBehaviour:
   m_ObjectHideFlags: 0
