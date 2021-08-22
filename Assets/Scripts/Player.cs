@@ -37,6 +37,8 @@ public class Player : MonoBehaviour
     public Sprite beingHitSprite;
     public Sprite wowSprite;
 
+    public float maxFallSpeed = -10f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -132,6 +134,12 @@ public class Player : MonoBehaviour
 
     private void BetterJumping()
     {
+        if (rb.velocity.y < maxFallSpeed)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, maxFallSpeed);
+            return;
+        }
+
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -157,6 +165,7 @@ public class Player : MonoBehaviour
             if (isInvulnerable) return;
             health -= 1;
             spriteRenderer.sprite = beingHitSprite;
+            Manager.audio.Play("PlayerTakeHit");
             Invoke(nameof(ChangeToNormalSprite), 1f);
             if (health <= 0)
             {
