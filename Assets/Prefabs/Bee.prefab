@@ -108,6 +108,7 @@ MonoBehaviour:
   knockbackSpeed: 7
   beingHitTimer: 0.15
   animator: {fileID: 0}
+  distanceToPursuePlayer: 15
 --- !u!50 &818808622774605190
 Rigidbody2D:
   serializedVersion: 4
