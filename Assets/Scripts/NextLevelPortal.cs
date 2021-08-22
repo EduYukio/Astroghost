@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class NextLevelPortal : MonoBehaviour
 {
+    public bool playSFX = true;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -15,7 +16,7 @@ public class NextLevelPortal : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        Manager.audio.Play("NextLevel");
+        if (playSFX) Manager.audio.Play("NextLevel");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

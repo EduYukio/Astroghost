@@ -117,6 +117,14 @@ MonoBehaviour:
     pitchVariance: 0
     loop: 0
     source: {fileID: 0}
+  - name: Victory
+    clip: {fileID: 8300000, guid: 56fdd3cc747ff4546807844f4cad5ace, type: 3}
+    volume: 0.95
+    volumeVariance: 0
+    pitch: 1
+    pitchVariance: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!114 &8693538356773398008
 MonoBehaviour:
   m_ObjectHideFlags: 0
