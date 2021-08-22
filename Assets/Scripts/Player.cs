@@ -39,6 +39,9 @@ public class Player : MonoBehaviour
 
     public float maxFallSpeed = -10f;
 
+    public Vector3 originalPosition;
+    public static Vector3 respawnPosition = Vector3.zero;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,6 +49,10 @@ public class Player : MonoBehaviour
         playerCamera = Camera.main;
         health = maxHealth;
         Manager.PlayBGMIfNotStartedYet();
+        if (respawnPosition == Vector3.zero)
+        {
+            respawnPosition = originalPosition;
+        }
     }
 
     void Update()
@@ -184,7 +191,7 @@ public class Player : MonoBehaviour
         isInvulnerable = false;
     }
 
-    private void Die()
+    public void Die()
     {
         // Animator animator = GetComponent<Animator>();
         // animator.enabled = false;
@@ -207,7 +214,7 @@ public class Player : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private void ChangeToNormalSprite()
+    public void ChangeToNormalSprite()
     {
         spriteRenderer.sprite = normalSprite;
     }

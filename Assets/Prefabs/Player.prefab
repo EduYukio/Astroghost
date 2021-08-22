@@ -428,7 +428,7 @@ MonoBehaviour:
   zoomInSize: 2
   normalZoomSize: 5.5
   pauseTime: 0.3
-  maxHealth: 3
+  maxHealth: 5
   health: 0
   isInvulnerable: 0
   invulnerabilityTime: 2
